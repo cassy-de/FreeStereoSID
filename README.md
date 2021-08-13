@@ -6,7 +6,7 @@
 
 Beschreibung
 
-Die "Free Stereo SID" besteht aus den folgenden beiden Komponenten: 
+Der "Free Stereo SID" besteht aus den folgenden beiden Komponenten: 
 
  *  SID Sockel Adapter-Platine mit Level-Shifter und Sockel für einen
 
