@@ -44,9 +44,10 @@ uint8_t portPinsC[5]  = {7, 8, 9, 4, 11};                   // A0, A1, A2, A3, A
 uint8_t portPinsD[8]  = {13, 14, 15, 16, 17, 18, 19, 20};   // D0, D1, D2, D3, D4, D5, D6, D7
 
 
-#define sidCount 1
+#define sidCount 2
 
-int sidAddresses[]          = {0xD400, 0xD420, 0xD500, 0xD520, 0xDE00};
+//int sidAddresses[]          = {0xD400, 0xD420, 0xD500, 0xD520, 0xDE00};
+int sidAddresses[]          = {0xD400, 0xD500, 0xD520, 0xDE00};
 
 
 FreeStereoSID   sidChip[sidCount];
@@ -67,8 +68,8 @@ AudioConnection patchCord5(mixerSID2, 0, mqs1, 0);
 AudioAnalyzePeak mixerVUPeak;
 AudioConnection  patchCord6(mixerSID1, 0, mixerVUPeak, 0);
 
-//float sidOutputVolume = 0.25f;  // Do not use more than 0.3!
-float sidOutputVolume = 0.05f;    // ...0.05f Headphones Level for "Developing"
+float sidOutputVolume = 0.2f;  // Do not use more than 0.3!
+//float sidOutputVolume = 0.05f;    // ...0.05f Headphones Level for "Developing"
 
 
 
@@ -119,9 +120,9 @@ void setup() {
   pinMode(pinIO1, INPUT);
 
   // * Disable PULLUPs for A5,A8,IO1  because normally would be HIGH and then never D400 happen! *
-  CORE_PIN2_CONFIG = CONFIG_NOPULLUP;
-  CORE_PIN3_CONFIG = CONFIG_NOPULLUP;
-  CORE_PIN23_CONFIG = CONFIG_NOPULLUP;
+//  CORE_PIN2_CONFIG = CONFIG_NOPULLUP;
+//  CORE_PIN3_CONFIG = CONFIG_NOPULLUP;
+//  CORE_PIN23_CONFIG = CONFIG_NOPULLUP;
 
   pinMode(pinPOTX, INPUT);
   pinMode(pinPOTY, INPUT);
@@ -169,7 +170,7 @@ void loop() {
 
 void routeSID2ToPinOut2(boolean out2) {
 
-  if (!out2) {
+  if (out2) {
     patchCord4.connect();
     patchCord5.disconnect();
   }
@@ -207,6 +208,10 @@ FASTRUN void chipSelected() {
     /*    
     Serial.print("Address: ");
     Serial.print((busAdr + regAddr), HEX);
+    Serial.print("  - ");
+    Serial.print(sid_A5_state);
+    Serial.print("  - ");
+    Serial.print(sid_A8_state);
     Serial.print("    Data: ");
     Serial.println(data_val);
     */
