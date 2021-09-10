@@ -25,7 +25,8 @@ Die Software befindet sich noch in der Entwicklung (Beta).
 
 -----------------------------------------------------
 
-
+2012-09: now stereo SID, A5/A8/IO activated, 1st on D400, 2nd on D500
+         sound track of ElectricCity can be found in directory "listen"
 
 Have fun ;-)
 
